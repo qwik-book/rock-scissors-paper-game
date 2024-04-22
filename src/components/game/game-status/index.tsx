@@ -1,5 +1,4 @@
 import { component$, useContext } from '@builder.io/qwik';
-import { GameProps } from '~/models/game';
 import { CONTEXT_GAME } from '~/routes';
 
 export const GameStatus = component$(() => {
