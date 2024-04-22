@@ -1,11 +1,8 @@
-import { component$ } from '@builder.io/qwik';
+import { component$, useContext } from '@builder.io/qwik';
 import { GameProps } from '~/models/game';
+import { CONTEXT_GAME } from '~/routes';
 
-export const GameStatus = component$((store: GameProps) => {
-  const {
-    game: {
-      data: { result },
-    },
-  } = store;
+export const GameStatus = component$(() => {
+  const {data: {result}} = useContext(CONTEXT_GAME);
   return <p class='info-game'>{result}</p>;
 });

@@ -1,9 +1,9 @@
-import { component$ } from '@builder.io/qwik';
-import { GameProps } from '~/models/game';
+import { component$, useContext } from '@builder.io/qwik';
 import { Badge } from '~/components/game/badge';
+import { CONTEXT_GAME } from '~/routes';
 
-export const ScoreBoard = component$<GameProps>((props) => {
-  const { game } = props;
+export const ScoreBoard = component$(() => {
+  const game = useContext(CONTEXT_GAME);
   return (
     <div class='score-board'>
       <Badge />

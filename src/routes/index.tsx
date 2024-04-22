@@ -1,4 +1,12 @@
-import { component$, useStore, useStyles$ } from '@builder.io/qwik';
+import {
+  Signal,
+  component$,
+  createContextId,
+  useContextProvider,
+  useSignal,
+  useStore,
+  useStyles$,
+} from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 
 import indexCss from './index.css?inline';
@@ -7,17 +15,22 @@ import indexCss from './index.css?inline';
 import { Title, GameStatus, Choices, ScoreBoard } from '~/components';
 
 import { gameInitialData } from '~/constants/game-data';
+import { GameStore } from '~/models/game';
+
+export const CONTEXT_GAME = createContextId<GameStore>('game');
 
 export default component$(() => {
   useStyles$(indexCss);
   const game = useStore(gameInitialData);
 
+  useContextProvider(CONTEXT_GAME, game);
+
   return (
     <>
       <Title />
-      <ScoreBoard game={game} />
-      <GameStatus game={game} />
-      <Choices game={game} />
+      <ScoreBoard />
+      <GameStatus />
+      <Choices />
     </>
   );
 });

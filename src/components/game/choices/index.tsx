@@ -1,9 +1,9 @@
-import { component$ } from '@builder.io/qwik';
+import { component$, useContext } from '@builder.io/qwik';
 import { gamePlay } from '~/helpers/game';
-import { GameProps } from '~/models/game';
+import { CONTEXT_GAME } from '~/routes';
 
-export const Choices = component$<GameProps>((props) => {
-  const { game } = props;
+export const Choices = component$(() => {
+  const game = useContext(CONTEXT_GAME);
   const gameChoices = Object.keys(game.choices);
   return (
     <div class='choices'>
@@ -14,7 +14,11 @@ export const Choices = component$<GameProps>((props) => {
           option: string;
         };
         return (
-          <span key={'choice_game_' + index} class='choice' onClick$={() => gamePlay(option, game)}>
+          <span
+            key={'choice_game_' + index}
+            class='choice'
+            onClick$={() => gamePlay(option, game)}
+          >
             <img src={img} width={200} height={200} alt={alt} />
           </span>
         );
