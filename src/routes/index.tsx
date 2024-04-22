@@ -1,9 +1,7 @@
 import {
-  Signal,
   component$,
   createContextId,
   useContextProvider,
-  useSignal,
   useStore,
   useStyles$,
 } from '@builder.io/qwik';
